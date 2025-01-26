@@ -27,69 +27,75 @@ const ManageDataPage: React.FC = () => {
   };
 
   return (
-    <div style={{ padding: "1rem" }}>
+    <div>
       <h2>Manage Teams and Users</h2>
 
-      <form onSubmit={handleAddTeam} style={{ marginBottom: "2rem" }}>
-        <label>Team Name:</label>
-        <input
-          type="text"
-          value={teamName}
-          onChange={(e) => setTeamName(e.target.value)}
-          required
-        />
+      <form className="form-section" onSubmit={handleAddTeam}>
+        <div>
+          <label>Team Name</label>
+          <input
+            type="text"
+            value={teamName}
+            onChange={(e) => setTeamName(e.target.value)}
+            required
+          />
+        </div>
         <button type="submit">Add Team</button>
       </form>
 
-      <form onSubmit={handleAddUser}>
-        <label>Select Team:</label>
-        <select
-          value={selectedTeam}
-          onChange={(e) => setSelectedTeam(e.target.value)}
-          required
-        >
-          <option value="">-- Select a team --</option>
-          {teams.map((team) => (
-            <option key={team.id} value={team.id}>
-              {team.name}
-            </option>
-          ))}
-        </select>
+      <form className="form-section" onSubmit={handleAddUser}>
+        <div>
+          <label>Select Team</label>
+          <select
+            value={selectedTeam}
+            onChange={(e) => setSelectedTeam(e.target.value)}
+            required
+          >
+            <option value="">-- Select a team --</option>
+            {teams.map((team) => (
+              <option key={team.id} value={team.id}>
+                {team.name}
+              </option>
+            ))}
+          </select>
+        </div>
 
-        <label>User Name:</label>
-        <input
-          type="text"
-          value={userName}
-          onChange={(e) => setUserName(e.target.value)}
-          required
-        />
+        <div>
+          <label>User Name</label>
+          <input
+            type="text"
+            value={userName}
+            onChange={(e) => setUserName(e.target.value)}
+            required
+          />
+        </div>
 
-        <label>User Email:</label>
-        <input
-          type="email"
-          value={userEmail}
-          onChange={(e) => setUserEmail(e.target.value)}
-        />
+        <div>
+          <label>User Email</label>
+          <input
+            type="email"
+            value={userEmail}
+            onChange={(e) => setUserEmail(e.target.value)}
+          />
+        </div>
 
         <button type="submit">Add User</button>
       </form>
 
-      <div style={{ marginTop: "2rem" }}>
+      <div className="teams-list">
         <h3>Current Teams and Users</h3>
-        <ul>
-          {teams.map((team) => (
-            <li key={team.id}>
-              <b>{team.name}</b> - Users:
-              <ul>
-                {team.users.map((user) => (
-                  <li key={user.id}>
-                    {user.name} ({user.email || "No email"})
-                  </li>
-                ))}
-              </ul>
-            </li>
-          ))}
-        </ul>
+        {teams.map((team) => (
+          <div key={team.id} style={{ marginBottom: "1rem" }}>
+            <b>{team.name}</b> - Users:
+            <ul>
+              {team.users.map((user) => (
+                <li key={user.id}>
+                  {user.name} ({user.email || "No email"})
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
       </div>
     </div>
   );
