@@ -52,6 +52,7 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   const removeUser = (teamId: string, userId: string) => {
+    console.log("Removing user:", userId, "from team:", teamId);
     setTeams((prev) =>
       prev.map((team) => {
         if (team.id === teamId) {
